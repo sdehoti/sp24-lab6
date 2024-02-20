@@ -9,16 +9,25 @@ def do_add(env, args):
 
 # [call]
 def do_call(env, args):
+    print("calling ")
+    print(args)
     # Set up the call.
     assert len(args) >= 1
-    name = args[0]
-    values = [do(env, a) for a in args[1:]]
 
     # Find the function.
-    func = env_get(env, name)
-    assert isinstance(func, list) and (func[0] == "func")
-    params, body = func[1], func[2]
-    assert len(values) == len(params)
+    if args[0] != "func":
+        name = args[0]
+        values = [do(env, a) for a in args[1:]]
+        func = env_get(env, name)
+        # put it here!
+        assert isinstance(func, list) and (func[0] == "func")
+        params, body = func[1], func[2]
+        assert len(values) == len(params)
+
+    else:
+        assert len(args) == 3
+        params, body = args[1], args[2]
+        
 
     # Run in new environment.
     env.append(dict(zip(params, values)))
@@ -27,6 +36,7 @@ def do_call(env, args):
 
     # Report.
     return result
+
 # [/call]
 
 def do_comment(env, args):
@@ -111,6 +121,7 @@ def do(env, instruction):
     return OPERATIONS[op](env, args)
 
 def env_get(env, name):
+    print(env)
     assert isinstance(name, str)
     for e in reversed(env):
         if name in e:

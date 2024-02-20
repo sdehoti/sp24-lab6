@@ -27,3 +27,6 @@ Write your answers to the questions below.
 
 Write a short summary of what you did (which exercises) below.
 * Ex. 1: env_get() traverses through the env variables until it finds a match and returns the list that is associated with it. env_set() checks whether the global variable already exists and if not, adds it to the list of global variables.  
+
+Part 2:
+We couldn't manage to get the "call a function literal" system working. This was becuase it was really unclear what the call function was actually doing when it first ran through the parameters and evaluated them. 
