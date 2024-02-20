@@ -26,8 +26,9 @@ def do_call(env, args):
 
     else:
         assert len(args) == 3
+        func_name = args[0]
         params, body = args[1], args[2]
-        
+        return [func_name, params, body]
 
     # Run in new environment.
     env.append(dict(zip(params, values)))
